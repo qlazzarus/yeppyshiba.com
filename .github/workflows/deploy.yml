@@ -1,0 +1,30 @@
+name: Build and deploy
+on: 
+  push: 
+    branches: [ main ]
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@master
+      - name: set up node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 17.x
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with: 
+          path: node_modules
+          key: ${{runner.OS}}-build-$${hashFiles('**/package-lock.json')}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ runner.OS }}-build
+      - name: install devDependencies
+        run: npm install
+      - name: build
+        run: npm run prod
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          publish_branch: gh-pages
+          publish_dir: ./dist

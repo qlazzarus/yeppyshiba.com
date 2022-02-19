@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "allowJs": true,
+        "strict": true,
+        "isolatedModules": true,
+        "baseUrl": "./src",
+        "noImplicitThis": true,
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "typeRoots": [
+        "./node_modules/@types",
+        "./typings"
+    ]
+}
