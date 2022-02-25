@@ -14,17 +14,11 @@ export default <Configuration>{
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            },
-            /*
-            {
-                test: /\.(glsl|vert|flag)$/,
-                use: 'raw-loader'
             }
-            */
         ]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.glsl'],
+        extensions: ['.ts', '.tsx', '.js'],
         alias: {
             '@': path.resolve(__dirname, 'src/')
         }

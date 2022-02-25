@@ -51,6 +51,9 @@ export default class MainScene extends Phaser.Scene {
 
         // add audio 
         this.sound.play(AssetEnum.EIGHT_BIT_DETECTIVE);
+
+        // set camera pipeline
+        this.cameras.main.setPostPipeline('PicoCRT');
     }
 
     public update(): void {
