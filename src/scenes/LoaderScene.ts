@@ -37,6 +37,9 @@ export default class LoaderScene extends Phaser.Scene {
                 case 'spritesheet':
                     this.load.spritesheet(o.name, o.path, o.frameConfig);
                     break;
+                case 'bitmap-font':
+                    this.load.bitmapFont(o.name, o.path, o.fontData);
+                    break;
             }
         });
     }
