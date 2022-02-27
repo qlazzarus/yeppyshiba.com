@@ -1,36 +1,30 @@
 import 'phaser';
-import MainScene from '@/MainScene';
-import PicoCRT from '@/PicoCRT';
+import { LoaderScene, MainScene } from '@/scenes';
+import { PicoCRT } from '@/pipelines';
 
-namespace yeppy {
-    export class Game extends Phaser.Game {
-        constructor() {
-            super(<Phaser.Types.Core.GameConfig>{
-                width: GAME_WIDTH,
-                height: GAME_HEIGHT,
-                type: Phaser.WEBGL,
-                parent: 'content',
-                /*
-                render: {
-                    pixelArt: true
-                },
-                */
-                /*
-                physics: {
-                    default: 'arcade',
-                },
-                */
-                scale: {
-                    mode: Phaser.Scale.FIT,
-                    autoCenter: Phaser.Scale.CENTER_BOTH
-                },
-                pipeline: {
-                    PicoCRT
-                } as any,
-                scene: MainScene,
-            });
-        }
+class Game extends Phaser.Game {
+    constructor() {
+        super(<Phaser.Types.Core.GameConfig>{
+            width: GAME_WIDTH,
+            height: GAME_HEIGHT,
+            type: Phaser.WEBGL,
+            parent: 'content',
+            physics: {
+                default: 'arcade',
+            },
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            pipeline: {
+                PicoCRT
+            } as any,
+            scene: [
+                LoaderScene, 
+                MainScene
+            ]
+        });
     }
 }
 
-new yeppy.Game();
+new Game();

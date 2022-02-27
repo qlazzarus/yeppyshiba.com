@@ -33,10 +33,8 @@ export default <Configuration>{
     plugins: [
         new CleanWebpackPlugin(),
         new DefinePlugin({
-            CANVAS_RENDERER: true,
             GAME_WIDTH: 640,
             GAME_HEIGHT: 360,
-            WEBGL_RENDERER: true
         }),
         new CopyWebpackPlugin({
             patterns: [

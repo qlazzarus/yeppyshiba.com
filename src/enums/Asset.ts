@@ -1,4 +1,4 @@
-enum AssetEnum {
+enum Asset {
     EIGHT_BIT_DETECTIVE = '8bit_detective',
     BACK_BUILDINGS = 'back-builings',
     FAR_BUILDINGS = 'far-builings',
@@ -6,4 +6,4 @@ enum AssetEnum {
     SHIBA = 'shiba'
 }
 
-export default AssetEnum;
+export default Asset;

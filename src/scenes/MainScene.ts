@@ -1,5 +1,4 @@
-import AnimationEnum from '@/AnimationEnum';
-import AssetEnum from '@/AssetEnum';
+import { Animation, Asset, Scene } from '@/enums';
 
 export default class MainScene extends Phaser.Scene {
     private scrollSpeed = 1;
@@ -8,49 +7,41 @@ export default class MainScene extends Phaser.Scene {
     private backgroundForeground?: Phaser.GameObjects.TileSprite;
 
     constructor() {
-        super('main-scene');
+        super(Scene.MAIN_SCENE);
     }
 
     public init(): void {}
-
-    public preload(): void {
-        this.load.image(AssetEnum.FAR_BUILDINGS, 'assets/far-buildings.png'); // first
-        this.load.image(AssetEnum.BACK_BUILDINGS, 'assets/back-buildings.png');
-        this.load.image(AssetEnum.FOREGROUND, 'assets/foreground.png');
-        this.load.spritesheet(AssetEnum.SHIBA, 'assets/shiba.png', { frameWidth: 32, frameHeight: 32 });
-        this.load.audio(AssetEnum.EIGHT_BIT_DETECTIVE, 'assets/8bit_detective.mp3');
-    }
 
     public create(): void {
         const width = this.scale.width;
         const height = this.scale.height;
         
         // add far buildings
-        this.backgroundFar = this.add.tileSprite(0, 0, width, height, AssetEnum.FAR_BUILDINGS)
+        this.backgroundFar = this.add.tileSprite(0, 0, width, height, Asset.FAR_BUILDINGS)
             .setScale(2);
 
         // add back buildings
-        this.backgroundBack = this.add.tileSprite(0, -25, width, height, AssetEnum.BACK_BUILDINGS)
+        this.backgroundBack = this.add.tileSprite(0, -25, width, height, Asset.BACK_BUILDINGS)
             .setScale(2);
 
         // add forground
-        this.backgroundForeground = this.add.tileSprite(0, -45, width, height, AssetEnum.FOREGROUND)
+        this.backgroundForeground = this.add.tileSprite(0, -45, width, height, Asset.FOREGROUND)
             .setScale(2.25);
 
         // add shiba animation
         this.anims.create({
-            key: AnimationEnum.SHIBA_WALK,
-            frames: this.anims.generateFrameNumbers(AssetEnum.SHIBA, { start: 4, end: 7, first: 4 }),
+            key: Animation.SHIBA_WALK,
+            frames: this.anims.generateFrameNumbers(Asset.SHIBA, { start: 4, end: 7, first: 4 }),
             frameRate: 10,
             repeat: -1
         });
 
-        this.add.sprite(100, height - 55, AssetEnum.SHIBA)
-            .play(AnimationEnum.SHIBA_WALK)
+        this.add.sprite(100, height - 55, Asset.SHIBA)
+            .play(Animation.SHIBA_WALK)
             .setScale(4);
 
         // add audio 
-        this.sound.play(AssetEnum.EIGHT_BIT_DETECTIVE);
+        this.sound.play(Asset.EIGHT_BIT_DETECTIVE);
 
         // set camera pipeline
         this.cameras.main.setPostPipeline('PicoCRT');
